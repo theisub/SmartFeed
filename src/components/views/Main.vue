@@ -51,7 +51,7 @@ body {
   background-color: #5f76b6;
   position: fixed;
   z-index: 999;
-  height: 70px;
+  height: 80px;
   top: 0;
   left: 0;
   right: 0;
@@ -63,7 +63,7 @@ body {
   vertical-align: middle;
 }
 .pages {
-  padding-top: 20px;
+  padding-top: 30px;
 }
 router-link {
   color: black;
