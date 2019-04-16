@@ -7,6 +7,19 @@ import json
 #TODO:Обработка ошибок
 
 def GetTxt(url,language ='ru'):
+    """
+    Парсер новостей для формирования новости в виде JSON.
+    
+    @type url: str
+    @param url: URL-адрес новости
+
+    @type language: str
+    @param language: Язык новости для правильной обработки (по умолчанию русский) 
+
+    @rtype: str|dict
+    @return: Возвращает новость со следующими полями: изображение, url-адрес новости, заголовок, текст новости, краткое описание новости
+
+    """
     article = Article(url,language= language)
     article.download()
     try:
@@ -22,9 +35,21 @@ def GetTxt(url,language ='ru'):
         return ""
 
 def GetResponses(tag,limit = 'nolimit'):
+    """
+    Получение URL-адресов новостей по указанному тегу. Происходит обращение к RSS от Google News. 
+    
+    @type tag: str
+    @param tag: Тег по которому производится поиск новостей
+
+    @type limit: str|int
+    @param limit: Предел количества выводимых адресов новостей (по умолчанию без ограничения)
+
+    @rtype: list
+    @return: Возвращает список URL-адресов новостей 
+
+    """
     request = ('https://news.google.com/rss/search?q=%s&num=5&hl=ru&gl=RU&ceid=RU:ru' % (tag))
     response = requests.get(request, stream=True)
-
     response.raw.decode_content = True
     text = response.text
     content = response.content
@@ -42,5 +67,3 @@ def GetResponses(tag,limit = 'nolimit'):
 
 
     return all_urls
-
-    
