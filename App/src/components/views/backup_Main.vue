@@ -11,10 +11,10 @@
           <div class="col-10">
             <div class="row pages">
               <div class="col">
-                <router-link class="router-link" to="/news">Новости</router-link>
+                <router-link to="/news">Новости</router-link>
               </div>
               <div class="col">
-                <router-link class="router-link" to="/tags">Интересы</router-link>
+                <router-link to="/tags">Интересы</router-link>
               </div>
             </div>
           </div>
@@ -24,18 +24,35 @@
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
-
-    <ItemList msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import ItemList from './ItemList.vue'
+import axios from 'axios'
 
 export default {
-  name: 'Main',
-  components: {
-    ItemList
+  data () {
+    return {
+      posts: null,
+      endpoint: 'https://jsonplaceholder.typicode.com/posts/',
+    }
+  },
+
+  created() {
+    this.getAllPosts();
+  },
+
+  methods: {
+    getAllPosts() {
+      axios.get(this.endpoint)
+        .then(response => {
+          this.posts = response.data;
+        })
+        .catch(error => {
+          console.log('-----error-------');
+          console.log(error);
+        })
+    }
   }
 }
 </script>
@@ -69,8 +86,8 @@ body {
 .pages {
   padding-top: 30px;
 }
-.router-link {
-  color: white;
+router-link {
+  color: black;
   font-size: 25px;
   cursor: pointer;
 }
