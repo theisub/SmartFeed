@@ -1,12 +1,19 @@
 {
   "name": "smartfeed",
   "version": "0.1.0",
+  "description": "All you need is news.",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://git.iu7.bmstu.ru/theisub/SmartFeed.git"
+  },
+  "author": "Team Unknown",
+  "license": "ISC",
   "dependencies": {
     "core-js": "^2.6.5",
     "eslint-config-airbnb": "^17.1.0",
@@ -17,9 +24,11 @@
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
+    "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "vue-router": "^3.0.3",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
