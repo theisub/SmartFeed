@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-1">
             <router-link to="/" exact>
-              <img class="logo" src="../../../public/logo.png" alt="logo">
+              <img class="logo" src="../../assets/logo.png" alt="logo">
             </router-link>
           </div>
           <div class="col-10">
