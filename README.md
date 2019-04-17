@@ -2,27 +2,27 @@
 
 ## Project setup
 ```
-npm install
+cd App; npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+cd App; npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+cd App; npm run build
 ```
 
 ### Run your tests
 ```
-npm run test
+cd App; npm run test
 ```
 
 ### Lints and fixes files
 ```
-npm run lint
+cd App; npm run lint
 ```
 
 ### Customize configuration
