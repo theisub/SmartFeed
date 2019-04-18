@@ -19,14 +19,13 @@
 </template>
 
 <script>
-//import { watchList } from '../api'
 import axios from 'axios'
 
 export default {
   data () {
     return {
-      articles: null,
-      endpoint: 'https://jsonplaceholder.typicode.com/posts/',
+      articles: [],
+      //endpoint: 'https://jsonplaceholder.typicode.com/posts/',
     }
   },
 
@@ -48,7 +47,8 @@ export default {
     },*/
     getArticles() {
       this.articles = require('../assets/example_news.json').articles;
-    }
+      //this.articles = this.articles.concat(require('../assets/example_news.json').articles);
+    },
   }
 }
 </script>

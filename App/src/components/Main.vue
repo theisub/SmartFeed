@@ -24,17 +24,13 @@
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
-
-    <ItemList msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'Main',
-  components: {
-  }
+  name: 'Main'
 }
 </script>
 
@@ -71,5 +67,6 @@ body {
   color: white;
   font-size: 25px;
   cursor: pointer;
+  text-decoration-color: white;
 }
 </style>
