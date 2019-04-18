@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-1">
             <router-link to="/" exact>
-              <img class="logo" src="../../assets/logo.png" alt="logo">
+              <img class="logo" src="../assets/logo.png" alt="logo">
             </router-link>
           </div>
           <div class="col-10">
@@ -24,19 +24,13 @@
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
-
-    <ItemList msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import ItemList from './ItemList.vue'
 
 export default {
-  name: 'Main',
-  components: {
-    ItemList
-  }
+  name: 'Main'
 }
 </script>
 
@@ -67,11 +61,12 @@ body {
   vertical-align: middle;
 }
 .pages {
-  padding-top: 30px;
+  padding-top: 20px;
 }
 .router-link {
   color: white;
   font-size: 25px;
   cursor: pointer;
+  text-decoration-color: white;
 }
 </style>

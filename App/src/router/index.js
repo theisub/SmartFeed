@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ItemList from '../components/views/ItemList.vue'
-import TagList from '../components/views/TagList.vue'
+import ItemList from '../components/ItemList.vue'
+import TagList from '../components/TagList.vue'
 
 Vue.use(Router);
 
 // route-level code splitting
-//const ItemList = () => import('../components/views/ItemList.vue');
-//const TagList = () => import('../components/views/TagList.vue');
+//const ItemList = () => import('../components/ItemList.vue');
+//const TagList = () => import('../components/TagList.vue');
 
 export function createRouter() {
     return new Router({
