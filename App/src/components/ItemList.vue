@@ -1,10 +1,13 @@
 <template>
 <div>
-  <div v-for="news in newsList" :key="news">
-    {{ news.title }}
-  </div>
-  <div v-for="post in posts" :key="post">
-    {{ post.title }}
+  <div v-for="article in articles" :key="article.index">
+    <a v-bind:href="article.url" target="_blank">
+      <div>
+        <h5>{{ article.title }}</h5>
+        <p>{{ article.description }}</p>
+        <img v-bind:src="article.img">
+      </div>
+    </a>
   </div>
 </div>
 </template>
@@ -16,18 +19,17 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      posts: null,
+      articles: null,
       endpoint: 'https://jsonplaceholder.typicode.com/posts/',
-      newsList: null,
     }
   },
 
   created() {
-    this.getAllPostsExamp();
-    this.getAllPostsBlanc();
+    this.getArticles();
   },
 
   methods: {
+    /*
     getAllPostsExamp() {
       axios.get(this.endpoint)
         .then(response => {
@@ -37,16 +39,9 @@ export default {
           console.log('-----error-------');
           console.log(error);
         })
-    },
-    getAllPostsBlanc() {
-      axios.get(this.endpoint)
-        .then(response => {
-          this.newsList = response.data;
-        })
-        .catch(error => {
-          console.log('-----error-------');
-          console.log(error);
-        })
+    },*/
+    getArticles() {
+      this.articles = require('../assets/example_news.json').articles;
     }
   }
 }
