@@ -1,13 +1,19 @@
 <template>
 <div>
-  <div v-for="article in articles" :key="article.index">
-    <a v-bind:href="article.url" target="_blank">
-      <div>
-        <h5>{{ article.title }}</h5>
-        <p>{{ article.description }}</p>
-        <img v-bind:src="article.img">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 news-block" v-for="article in articles" :key="article.index">
+        <a v-bind:href="article.url" target="_blank">
+          <div>
+            <img v-bind:src="article.img" class="img-fluid">
+            <h1>{{ article.title }}</h1>
+            <h2>{{ article.description }}</h2>
+          </div>
+        </a>
       </div>
-    </a>
+    </div>
+
+    <button type="button" class="btn btn-dark">Еще 9 новостей</button>
   </div>
 </div>
 </template>
@@ -48,4 +54,45 @@ export default {
 </script>
 
 <style>
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+a:-webkit-any-link {
+  text-decoration-color: grey;
+}
+
+img {
+  padding: 10px;
+}
+
+h1,h2 {
+  padding-right: 10px;
+  padding-left: 10px;
+  color: grey;;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 10px;
+}
+
+button {
+  margin: 20px;
+  margin-bottom: 100px;
+}
+
+.container {
+  margin-top: 80px;
+}
+
+.news-block  {
+  padding: 10px;
+  cursor: pointer;
+  background: #CEE3F6;
+  background-clip: content-box;
+}
 </style>

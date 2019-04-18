@@ -30,12 +30,10 @@
 </template>
 
 <script>
-import ItemList from './ItemList.vue'
 
 export default {
   name: 'Main',
   components: {
-    ItemList
   }
 }
 </script>
@@ -67,7 +65,7 @@ body {
   vertical-align: middle;
 }
 .pages {
-  padding-top: 30px;
+  padding-top: 20px;
 }
 .router-link {
   color: white;
