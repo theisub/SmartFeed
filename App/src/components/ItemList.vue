@@ -1,24 +1,22 @@
 <template>
-<div>
-  <div class="container">
+<div class="container">
 
-    <div class="row">
+  <div class="row">
 
-      <div class="col-md-4 news-block" v-for="article in articles" :key="article.index">
-        <a v-bind:href="article.url" target="_blank">
-          <div>
-            <img v-bind:src="article.img" class="img-fluid">
-            <h1>{{ article.title }}</h1>
-            <h2>{{ article.description }}</h2>
-          </div>
-        </a>
-      </div>
-      
+    <div class="col-md-4 news-block" v-for="article in articles" :key="article.index">
+      <a v-bind:href="article.url" target="_blank">
+        <div>
+          <img v-bind:src="article.img" class="img-fluid">
+          <h1>{{ article.title }}</h1>
+          <h2>{{ article.description }}</h2>
+        </div>
+      </a>
     </div>
 
-    <button v-on:click="getArticles" type="button" class="btn btn-dark">Еще новости</button>
-
   </div>
+
+  <button v-on:click="getArticles" type="button" class="btn btn-dark">Еще новости</button>
+
 </div>
 </template>
 

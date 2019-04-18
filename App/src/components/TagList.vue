@@ -1,25 +1,27 @@
 <template>
-<div>
-  <div class="container">
-    <p>Список тегов</p>
+<div class="container">
+  <div class="tags-data">
+    <template class="col-md-4 news-block" v-for="tag in tags">
+      <span class="badge badge-info" v-for="(value, key) in tag" :key="value.index">{{ key }}: {{ value }}</span>
+    </template>
   </div>
 </div>
 </template>
 
 <script>
-//import { watchList } from '../api'
 import axios from 'axios'
 
 export default {
   data () {
     return {
-      articles: null,
-      endpoint: 'https://jsonplaceholder.typicode.com/posts/',
+      tags: null,
+      //endpoint: 'https://jsonplaceholder.typicode.com/posts/',
     }
   },
 
   created() {
-    this.getArticles();
+    this.getTags();
+    console.log(this.tags)
   },
 
   methods: {
@@ -34,15 +36,24 @@ export default {
           console.log(error);
         })
     },*/
-    getArticles() {
-      this.articles = require('../assets/example_news.json').articles;
+    getTags() {
+      this.tags = require('../assets/example_tags.json').tags;
     }
   }
 }
 </script>
 
 <style>
+.badge {
+  margin: 5px;
+  font-size: 20px;
+}
+
 .container {
   margin-top: 80px;
+}
+
+.tags-data {
+  margin-top: 180px;
 }
 </style>
