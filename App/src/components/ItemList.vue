@@ -11,7 +11,6 @@
 
 <script>
 //import { watchList } from '../api'
-import Item from '../Item.vue'
 import axios from 'axios'
 
 export default {
