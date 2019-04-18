@@ -1,7 +1,9 @@
 <template>
 <div>
   <div class="container">
+
     <div class="row">
+
       <div class="col-md-4 news-block" v-for="article in articles" :key="article.index">
         <a v-bind:href="article.url" target="_blank">
           <div>
@@ -11,9 +13,11 @@
           </div>
         </a>
       </div>
+      
     </div>
 
-    <button type="button" class="btn btn-dark">Еще 9 новостей</button>
+    <button v-on:click="getArticles" type="button" class="btn btn-dark">Еще новости</button>
+
   </div>
 </div>
 </template>
@@ -46,8 +50,9 @@ export default {
         })
     },*/
     getArticles() {
-      this.articles = require('../assets/example_news.json').articles;
-      //this.articles = this.articles.concat(require('../assets/example_news.json').articles);
+      //this.articles = require('../assets/example_news.json').articles;
+      this.articles = this.articles.concat(require('../assets/example_news.json').articles);
+      //console.log(this.articles)
     },
   }
 }
