@@ -2,3 +2,7 @@ package-lock.json
 node_modules
 icon*
 .vscode
+__pycache__
+db.sqlite3
+
+
