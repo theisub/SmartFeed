@@ -2,7 +2,7 @@ import pymorphy2
 import re
 import operator
 
-def create_tags(text, n):
+def create_tags(text, n=5):
 	text = re.sub(r'[-—.,:^!?@#$%()"«»\n]', "", text) 
 	text = re.sub(r'  ', " ", text)
 	words = re.split(r' ', text)
@@ -48,4 +48,4 @@ if __name__ == "__main__":
 	text = f.read()
 	f.close()
 
-	print(create_tags(text, 10))
+	print(create_tags(text))
