@@ -42,7 +42,9 @@
           class="btn btn-outline-info" 
           type="button" 
           v-on:click="addTag()" 
-        >Добавить</button>
+        >
+          Добавить
+        </button>
       </div>
 
     </div>

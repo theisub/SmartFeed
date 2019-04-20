@@ -8,17 +8,21 @@
       v-for="article in articles" 
       :key="article.index">
       <a 
+        target="_blank"
         v-on:click="incArticleTags(article)" 
         v-bind:href="article.url" 
-        target="_blank"
       >
         <div>
           <img 
-            v-bind:src="article.img" 
             class="img-fluid"
+            v-bind:src="article.img" 
           >
-          <h1>{{ article.title }}</h1>
-          <h2>{{ article.description }}</h2>
+          <h1>
+            {{ article.title }}
+          </h1>
+          <h2>
+            {{ article.description }}
+          </h2>
         </div>
       </a>
     </div>
@@ -29,7 +33,9 @@
     type="button" 
     class="btn btn-dark get-articles"
     v-on:click="getArticles('more')" 
-  >Еще новости</button>
+  >
+    Еще новости
+  </button>
 
 </div>
 </template>

@@ -5,23 +5,40 @@
         <div class="row">
           <div class="col-1">
             <router-link to="/" exact>
-              <img class="logo" src="../assets/logo.png" alt="logo">
+              <img 
+                class="logo" 
+                src="../assets/logo.png" 
+                alt="logo"
+              >
             </router-link>
           </div>
           <div class="col-10">
             <div class="row pages">
               <div class="col">
-                <router-link class="router-link" to="/news">Новости</router-link>
+                <router-link 
+                  class="router-link" 
+                  to="/news"
+                >
+                  Новости
+                </router-link>
               </div>
               <div class="col">
-                <router-link class="router-link" to="/tags">Интересы</router-link>
+                <router-link 
+                  class="router-link" 
+                  to="/tags"
+                >
+                  Интересы
+                </router-link>
               </div>
             </div>
           </div>
         </div>
       </nav>
     </header>
-    <transition name="fade" mode="out-in">
+    <transition 
+      name="fade" 
+      mode="out-in"
+    >
       <router-view class="view"></router-view>
     </transition>
   </div>
