@@ -15,7 +15,7 @@
 
   </div>
 
-  <button v-on:click="getArticles" type="button" class="btn btn-dark">Еще новости</button>
+  <button v-on:click="getArticles" type="button" class="btn btn-dark get-articles">Еще новости</button>
 
 </div>
 </template>
@@ -83,7 +83,7 @@ h2 {
   font-size: 10px;
 }
 
-button {
+button .get-articles {
   margin: 20px;
   margin-bottom: 100px;
 }
