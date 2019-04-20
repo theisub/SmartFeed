@@ -107,7 +107,7 @@ export default {
           console.log('-----error-------', error);
         })
       
-      //this.getTags()
+      this.getTags()
     },
   }
 }
