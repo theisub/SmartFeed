@@ -2,3 +2,4 @@ pymorphy2
 pymorphy2-dicts-ru
 newspaper3k
 request
+Django
