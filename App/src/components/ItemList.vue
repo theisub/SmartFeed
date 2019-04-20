@@ -3,10 +3,20 @@
 
   <div class="row">
 
-    <div class="col-md-4 news-block" v-for="article in articles" :key="article.index">
-      <a v-bind:href="article.url" target="_blank">
+    <div 
+      class="col-md-4 news-block" 
+      v-for="article in articles" 
+      :key="article.index">
+      <a 
+        v-on:click="incArticleTags(article)" 
+        v-bind:href="article.url" 
+        target="_blank"
+      >
         <div>
-          <img v-bind:src="article.img" class="img-fluid">
+          <img 
+            v-bind:src="article.img" 
+            class="img-fluid"
+          >
           <h1>{{ article.title }}</h1>
           <h2>{{ article.description }}</h2>
         </div>
@@ -15,7 +25,11 @@
 
   </div>
 
-  <button v-on:click="getArticles" type="button" class="btn btn-dark get-articles">Еще новости</button>
+  <button 
+    type="button" 
+    class="btn btn-dark get-articles"
+    v-on:click="getArticles('more')" 
+  >Еще новости</button>
 
 </div>
 </template>
@@ -32,25 +46,38 @@ export default {
   },
 
   created() {
-    this.getArticles();
+    this.getArticles('refresh');
   },
 
   methods: {
-    /*
-    getAllPostsExamp() {
-      axios.get(this.endpoint)
+    getArticles(param) {
+      this.articles = this.articles.concat(require('../assets/example_news.json').articles);
+      /*
+      const strJson = JSON.stringify({
+        "nickname": this.nickname,
+        "param": param,
+      });
+      // тут поправить аккуратно ссылку на запрос
+      axios.post(this.endpoint + '', strJson)
         .then(response => {
-          this.posts = response.data;
+          this.articles = this.articles.concat(response.data.articles);
         })
         .catch(error => {
-          console.log('-----error-------');
-          console.log(error);
+          console.log('-----error-------', error);
         })
-    },*/
-    getArticles() {
-      //this.articles = require('../assets/example_news.json').articles;
-      this.articles = this.articles.concat(require('../assets/example_news.json').articles);
-      //console.log(this.articles)
+      */
+    },
+    incArticleTags: function (article) {
+      /*
+      const strJson = JSON.stringify({
+        "url": article.url,
+      });
+      // тут поправить аккуратно ссылку на запрос
+      axios.post(this.endpoint + '', strJson)
+        .catch(error => {
+          console.log('-----error-------', error);
+        })
+      */
     },
   }
 }

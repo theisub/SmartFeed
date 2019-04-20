@@ -2,22 +2,47 @@
 <div class="container">
 
   <div class="tags-data">
-    <template class="col-md-4 news-block" v-for="tag in tags">
-      <span class="badge badge-info" v-for="(value, key) in tag" :key="value.index">{{ key }}: {{ value }}</span>
+    <template 
+      class="col-md-4 news-block" 
+      v-for="tag in tags"
+    >
+      <span 
+        class="badge badge-info" 
+        v-for="(value, key) in tag" 
+        :key="value.index"
+      >
+        {{ key }}: {{ value }}
+      </span>
     </template>
   </div>
 
   <div class="row justify-content-md-center tag-input-data">
-    <div class="input-group col-md-6">
+    <div class="input-group col-md-9">
 
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">#</span>
-        <span class="input-group-text" id="basic-addon1">Вес</span>
+        <span class="input-group-text">#</span>
+        <span class="input-group-text">Вес</span>
       </div>
-      <input type="text" class="form-control col-md-4" placeholder="Тег" aria-label="Tag" aria-describedby="basic-addon1">
-      <input type="text" class="form-control col-md-2" placeholder="0.5" aria-label="weight" aria-describedby="basic-addon1">
+      <input 
+        type="text" 
+        class="form-control col-md-6" 
+        placeholder="Тег" 
+      >
+      <input 
+        type="number" 
+        step="0.1" 
+        min="0"
+        max="1"
+        class="form-control col-md-3" 
+        v-bind:placeholder="newTagValue" 
+        v-bind:value="newTagValue"
+      >
       <div class="input-group-append">
-        <button v-on:click="addTag" class="btn btn-outline-info" type="button" id="button-add-tag">Добавить</button>
+        <button 
+          class="btn btn-outline-info" 
+          type="button" 
+          v-on:click="addTag()" 
+        >Добавить</button>
       </div>
 
     </div>
@@ -33,33 +58,48 @@ export default {
   data () {
     return {
       tags: null,
+      newTagName: "",
+      newTagValue: 0.5,
       //endpoint: 'https://jsonplaceholder.typicode.com/posts/',
     }
   },
 
   created() {
     this.getTags();
-    console.log(this.tags)
   },
 
   methods: {
-    /*
-    getAllPostsExamp() {
-      axios.get(this.endpoint)
-        .then(response => {
-          this.posts = response.data;
-        })
-        .catch(error => {
-          console.log('-----error-------');
-          console.log(error);
-        })
-    },*/
     getTags() {
       this.tags = require('../assets/example_tags.json').tags;
+      /*
+      const strJson = JSON.stringify({
+        "nickname": this.nickname,
+      });
+      // тут поправить аккуратно ссылку на запрос
+      axios.post(this.endpoint + '', strJson)
+        .then(response => {
+          this.articles = this.articles.concat(response.data.articles);
+        })
+        .catch(error => {
+          console.log('-----error-------', error);
+        })
+      */
     },
-    addTag() {
-      // Высылаем тег на сервер
-      getTags();
+    addTag(key, value) {
+      /*
+      const strJson = JSON.stringify({
+        "nickname": this.nickname,,
+        "tags": [
+            {key: value}
+        ]
+      });
+      // тут поправить аккуратно ссылку на запрос
+      axios.post(this.endpoint + '', strJson)
+        .catch(error => {
+          console.log('-----error-------', error);
+        })
+      */
+      this.getTags()
     },
   }
 }
