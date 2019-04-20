@@ -26,7 +26,10 @@ def init_user(request):
 
 			return JsonResponse("User created", status = 200, safe=False)
 		'''
-		return JsonResponse("User created", status = 200, safe=False)
+		resp = JsonResponse("User created", status = 200, safe=False)
+		resp['Access-Control-Allow-Origin'] = '*'
+
+		return resp
 
 
 @csrf_exempt
@@ -107,8 +110,10 @@ def get_news(request):
 		        }
 		    ]
 		}
-
-		return JsonResponse(news_feed, status = 200)
+		resp = JsonResponse(news_feed, status = 200)
+		resp['Access-Control-Allow-Origin'] = '*'
+		
+		return resp
 
 
 @csrf_exempt
@@ -121,8 +126,10 @@ def news_click(request):
 		#print("aaaaaaa")
 
 		#koef updating...
-
-		return JsonResponse("Koeff update", status = 200, safe=False)
+		resp = JsonResponse("Koeff update", status = 200, safe=False)
+		resp['Access-Control-Allow-Origin'] = '*'
+		
+		return resp
 
 
 @csrf_exempt
@@ -139,4 +146,7 @@ def get_user_tags(request):
     		]
     	}
 
-		return JsonResponse(tags, status = 200)
+		resp = JsonResponse(tags, status = 200)
+		resp['Access-Control-Allow-Origin'] = '*'
+		
+		return resp
