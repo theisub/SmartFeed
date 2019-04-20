@@ -27,8 +27,21 @@ def create_tags(text, n):
 			temp = count.get(norm, 0)
 			count[norm] =  temp + 1
 
-	sort = sorted(count.items(), key = operator.itemgetter(1))	
-	return sort[-n:]
+
+	sort = sorted(count.items(), key = operator.itemgetter(1))
+	sort = sort[-n:]
+	
+	count_tags = 0
+	for cur in sort:
+		count_tags = count_tags + cur[1]
+		
+	list_sort = []		
+	for cur in sort:	
+		list_cur = [cur[0], cur[1]/count_tags]
+		list_sort.append(list_cur)
+		
+		
+	return list_sort
 	
 if __name__ == "__main__":
 	f = open("text.txt", "r")
