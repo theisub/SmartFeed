@@ -7,12 +7,12 @@ import json
 @csrf_exempt
 def init_user(request):
 	if request.method == "OPTIONS":
-		resp = JsonResponse(status=200)
-	    resp["Access-Control-Allow-Origin"] = "*"
-	    resp["Access-Control-Allow-Methods"] = "OPTIONS, POST"
-	    #resp["Access-Control-Max-Age"] = "1000"
-	    #resp["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
-	    return resp
+		resp = JsonResponse(data="", status=200, safe=False)
+		resp["Access-Control-Allow-Origin"] = '*'
+		resp["Access-Control-Allow-Methods"] = "OPTIONS, POST"
+		#resp["Access-Control-Max-Age"] = "1000"
+		#resp["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+		return resp
 
 	if request.method == "POST":
 		user_and_tags = json.loads(request.body)
@@ -43,12 +43,12 @@ def init_user(request):
 @csrf_exempt
 def get_news(request):
 	if request.method == "OPTIONS":
-		resp = JsonResponse(status=200)
-	    resp["Access-Control-Allow-Origin"] = "*"
-	    resp["Access-Control-Allow-Methods"] = "OPTIONS, POST"
-	    #resp["Access-Control-Max-Age"] = "1000"
-	    #resp["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
-	    return resp
+		resp = JsonResponse(data="", status=200, safe=False)
+		resp["Access-Control-Allow-Origin"] = '*'
+		resp["Access-Control-Allow-Methods"] = "OPTIONS, POST"
+		#resp["Access-Control-Max-Age"] = "1000"
+		#resp["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+		return resp
 
 	if request.method == "POST":
 		user_and_tags = json.loads(request.body)
@@ -135,12 +135,12 @@ def get_news(request):
 @csrf_exempt
 def news_click(request):
 	if request.method == "OPTIONS":
-		resp = JsonResponse(status=200)
-	    resp["Access-Control-Allow-Origin"] = "*"
-	    resp["Access-Control-Allow-Methods"] = "OPTIONS, POST"
-	    #resp["Access-Control-Max-Age"] = "1000"
-	    #resp["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
-	    return resp
+		resp = JsonResponse(data="", status=200, safe=False)
+		resp["Access-Control-Allow-Origin"] = '*'
+		resp["Access-Control-Allow-Methods"] = "OPTIONS, POST"
+		#resp["Access-Control-Max-Age"] = "1000"
+		#resp["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+		return resp
 
 	if request.method == "POST":
 		user_and_url = json.loads(request.body)
@@ -159,12 +159,12 @@ def news_click(request):
 @csrf_exempt
 def get_user_tags(request):
 	if request.method == "OPTIONS":
-		resp = JsonResponse(status=200)
-	    resp["Access-Control-Allow-Origin"] = "*"
-	    resp["Access-Control-Allow-Methods"] = "OPTIONS, POST"
-	    #resp["Access-Control-Max-Age"] = "1000"
-	    #resp["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
-	    return resp
+		resp = JsonResponse(data="", status=200, safe=False)
+		resp["Access-Control-Allow-Origin"] = '*'
+		resp["Access-Control-Allow-Methods"] = "OPTIONS, POST"
+		#resp["Access-Control-Max-Age"] = "1000"
+		#resp["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+		return resp
 	    
 	if request.method == "POST":
 		user = json.loads(request.body)
