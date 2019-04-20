@@ -116,7 +116,7 @@ h2 {
   font-size: 10px;
 }
 
-button .get-articles {
+.get-articles {
   margin: 20px;
   margin-bottom: 100px;
 }
