@@ -3,3 +3,4 @@ pymorphy2-dicts-ru
 newspaper3k
 request
 Django
+djongo

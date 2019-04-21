@@ -1,7 +1,8 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-#from working_with_news import
+
+from working_with_news.GetNews import get_news_feed
 
 from .models import usertag, User, Tag, news
 
@@ -74,31 +75,23 @@ def get_news(request):
 			for tag in q.tags:
 				tags_for_feed[tag.tag_name] = tag.tag_koef
 
-			'''
-			if param == "refresh":
-				news_feed = get_news_feed(tags_for_feed, q.clicked_news)
-			else:
-				blocked_news = q.watched_news
-				for url in q.clicked_news:   # url arrays merge
-					blocked_news.append(url)
-				news_feed = get_news_feed(tags_for_feed, blocked_news)
-			'''
+			# prepare block_news for news API
+			blocked_news = []
+			for clicked_news_url in q.clicked_news:
+				blocked_news.append(clicked_news_url.url)
 
-			news_feed = {
-			    "size": 10,
-			    "articles": [
-			        {
-			            "img": "https://mobile-review.com/news/wp-content/uploads/dims2.jpg",
-			            "url": "https://mobile-review.com/news/huawei-gotova-prodavat-chipy-5g-tolko-apple",
-			            "title": "Huawei \u0433\u043e\u0442\u043e\u0432\u0430 \u043f\u0440\u043e\u0434\u0430\u0432\u0430\u0442\u044c \u0447\u0438\u043f\u044b 5G \u0442\u043e\u043b\u044c\u043a\u043e Apple",
-			            "description": ""
-			        }
-			    ]
-			}
+			if param == "refresh":
+				news_feed = get_news_feed(tags_for_feed, blocked_news)
+			else:
+				for watched_news_url in q.watched_news:   # url arrays merge
+					blocked_news.append(watched_news_url.url)
+				print(blocked_news)
+				news_feed = get_news_feed(tags_for_feed, blocked_news)
 
 			# store watched news
 			for article in news_feed["articles"]:
 				q.watched_news.append(news(article["url"]))
+				
 			q.save()
 
 			resp = JsonResponse(news_feed, status = 200)

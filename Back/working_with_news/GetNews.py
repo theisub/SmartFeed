@@ -5,7 +5,7 @@ from newspaper.network import multithread_request
 import xml.etree.ElementTree as ET
 import json
 import re
-from GetFeed import SortNewsByInterest,FormUserFeed
+from working_with_news.GetFeed import SortNewsByInterest,FormUserFeed
 from multiprocessing.dummy import Pool as ThreadPool
 import time 
 
