@@ -5,9 +5,10 @@ from newspaper.network import multithread_request
 import xml.etree.ElementTree as ET
 import json
 import re
-from working_with_news.GetFeed import SortNewsByInterest,FormUserFeed
+from GetFeed import SortNewsByInterest,FormUserFeed
 from multiprocessing.dummy import Pool as ThreadPool
 import time 
+import random
 
 def GetTxt(url,language ='ru'):
     """
@@ -57,7 +58,7 @@ def GetResponses(tag,limit = 'nolimit'):
     @return: Возвращает список URL-адресов новостей 
     """
 
-    request = ('https://news.google.com/rss/search?q=%s&num=5&hl=ru&gl=RU&ceid=RU:ru' % (tag))
+    request = ('https://news.google.com/rss/search?q=%s&num=5&hl=ru&gl=RU&ceid=RU:ru' % (tag[0]))
     response = requests.get(request, stream=True)
     response.raw.decode_content = True
     text = response.text
@@ -78,7 +79,34 @@ def GetResponses(tag,limit = 'nolimit'):
 
 
 def get_news_feed(tags_for_feed, blocked_news):
+ 
+    high_tier = []
+    low_tier = []
 
+    feedsize = 9
+
+
+    tags_for_feed = list(tags_for_feed.items())
+    random.shuffle(tags_for_feed)
+    tags_for_feed = tags_for_feed[:feedsize]
+    mean = sum(x[1] for x in tags_for_feed)/len(tags_for_feed)
+    if len(tags_for_feed) >= feedsize:
+        for item in tags_for_feed:
+            if item[1] > mean:
+                high_tier.append(item)
+            else:
+                low_tier.append(item)
+    elif len(tags_for_feed) > 0:
+        while len(high_tier) < feedsize:
+            high_tier.append(tags_for_feed[random.randint(0,len(tags_for_feed)-1)])
+    else:
+        return
+
+
+    random.shuffle(low_tier)
+    random.shuffle(high_tier)
+
+    tags_for_feed = high_tier + low_tier  
     start = time.time()
     pool1 = ThreadPool(len(tags_for_feed))
 
@@ -87,7 +115,6 @@ def get_news_feed(tags_for_feed, blocked_news):
     pool1.join()
 
     #forming len
-
     end = time.time()
     print("get urls from rss", end - start)
     urls_to_parse =[]
@@ -96,18 +123,17 @@ def get_news_feed(tags_for_feed, blocked_news):
 
     for i in range(len(urls)):
         res = [i for i in urls[i] if i not in blocked_news] 
-        #res = urls[i].difference(blocked_news)
         if len(res) > 0:
             data = dict()
-            data['tag'] = list(tags_for_feed.keys())[i]
-            data['coef'] = list(tags_for_feed.values())[i]
+            data['tag'] = (tags_for_feed[i])[0]
+            data['coef'] = (tags_for_feed[i])[1]
             data['url'] = res[0]
+            blocked_news.append(res[0])
             urls_to_parse.append(data)
 
     end = time.time()
     print("form non repeating dict", end - start)
 
-    feedsize = 9
 
     start = time.time()
     pool2 = ThreadPool(feedsize)
@@ -124,10 +150,3 @@ def get_news_feed(tags_for_feed, blocked_news):
     results = FormUserFeed(results)
 
     return results
-
-#пример который нужно будет перенести в views.py
-
-#blocked_news = []
-#tags_for_feed = {'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4,'Apple':0.6,"Samsung":0.5,"HTC":0.3,'Microsoft': 0.4,'Sony':0.7,'Nintendo':0.4,'Atari':0.3,'iOS':0.2,'Android':0.4}
-#res = get_news_feed(tags_for_feed,blocked_news)
-
