@@ -48,10 +48,8 @@
 export default {
   name: 'Main',
 
-  data () {
-    return {
-      nickname: "user1",
-    }
+  props: {
+    nickname: String,
   },
 }
 </script>

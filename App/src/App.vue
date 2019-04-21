@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Main msg="Welcome to Your Vue.js App"/>
+    <Main v-bind:nickname="this.nickname"/>
   </div>
 </template>
 
@@ -27,7 +27,6 @@ export default {
   methods: {
     askNickname() {
       this.nickname = prompt("Введите имя пользователя")
-      console.log(this.nickname)
     },
   },
 }

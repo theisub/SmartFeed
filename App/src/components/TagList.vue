@@ -72,7 +72,6 @@ export default {
 
   created() {
     this.getTags();
-    console.log(this.nickname)
   },
 
   methods: {

@@ -57,7 +57,6 @@ export default {
 
   created() {
     this.getArticles('refresh');
-    console.log(this.nickname)
   },
 
   methods: {
