@@ -124,7 +124,15 @@ def news_click(request):
 		q = usertag.objects.get(user={'nickname': nickname})
 		q.clicked_news.append(news(url))
 
-		#new_tags = update_tags(url, q.tags?)
+		'''
+		# prepare tags for news API
+		tags_for_feed = {}
+		for tag in q.tags:
+			tags_for_feed[tag.tag_name] = tag.tag_koef
+
+		new_tags = update_tags(url, tags_for_feed)
+		'''
+		
 		new_tags = {
 					"Apple": 0.6,
 			        "Samsung": 0.55,
