@@ -39,19 +39,25 @@
       name="fade" 
       mode="out-in"
     >
-      <router-view class="view"></router-view>
+      <router-view 
+        :nickname="nickname"
+        :endpoint="endpoint"
+      ></router-view>
     </transition>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'Main'
+  name: 'Main',
+
+  props: {
+    nickname: String,
+    endpoint: String,
+  },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;

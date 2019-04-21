@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Main msg="Welcome to Your Vue.js App"/>
+    <Main 
+      v-bind:nickname="this.nickname"
+      v-bind:endpoint="this.endpoint"
+    />
   </div>
 </template>
 
@@ -9,9 +12,27 @@ import Main from './components/Main.vue'
 
 export default {
   name: 'app',
+  
   components: {
     Main
-  }
+  },
+
+  data () {
+    return {
+      nickname: null,
+      endpoint: 'http://127.0.0.1:8000/news/',
+    }
+  },
+
+  created() {
+    this.askNickname();
+  },
+
+  methods: {
+    askNickname() {
+      this.nickname = prompt("Введите имя пользователя")
+    },
+  },
 }
 </script>
 
