@@ -6,3 +6,6 @@ __pycache__
 db.sqlite3
 
 
+Back/Dockerfile
+Back/news/migrations/__init__.py
+Back/news/migrations/0001_initial.py

@@ -91,17 +91,20 @@ export default {
     },
     addTag() {
       
-      var key = this.$refs.new_tag_name.value;
-      var value = this.$refs.new_tag_value.value;
+      const key = this.$refs.new_tag_name.value;
+      console.log(key)
+      const value = this.$refs.new_tag_value.value;
+      console.log(value)
 
       const strJson = JSON.stringify({
         "nickname": this.nickname,
         "tags": [
           {
-            key:value
+            [key]: value
           }
         ]
       });
+      console.log(strJson)
       axios.post(this.endpoint + 'init_user/', strJson)
         .catch(error => {
           console.log('-----error-------', error);
