@@ -5,10 +5,6 @@ import TagList from '../components/TagList.vue'
 
 Vue.use(Router);
 
-// route-level code splitting
-//const ItemList = () => import('../components/ItemList.vue');
-//const TagList = () => import('../components/TagList.vue');
-
 export function createRouter() {
     return new Router({
         mode: 'history',

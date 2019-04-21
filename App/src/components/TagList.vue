@@ -59,6 +59,10 @@
 import axios from 'axios'
 
 export default {
+  props: {
+    nickname: String,
+  },
+
   data () {
     return {
       tags: null,
@@ -68,13 +72,14 @@ export default {
 
   created() {
     this.getTags();
+    console.log(this.nickname)
   },
 
   methods: {
     getTags() {
       
       const strJson = JSON.stringify({
-        "nickname": "username1",
+        "nickname": this.nickname,
       });
       axios.post(this.endpoint + 'get_user_tags/', strJson)
         .then(response => {
@@ -91,7 +96,7 @@ export default {
       var value = this.$refs.new_tag_value.value;
 
       const strJson = JSON.stringify({
-        "nickname": "username1",
+        "nickname": this.nickname,
         "tags": [
           {
             key:value

@@ -44,6 +44,10 @@
 import axios from 'axios'
 
 export default {
+  props: {
+    nickname: String,
+  },
+
   data () {
     return {
       articles: [],
@@ -53,13 +57,14 @@ export default {
 
   created() {
     this.getArticles('refresh');
+    console.log(this.nickname)
   },
 
   methods: {
     getArticles(param) {
       
       const strJson = JSON.stringify({
-        "nickname": "user1",
+        "nickname": this.nickname,
         "param": param,
       });
       axios.post(this.endpoint + 'get_news/', strJson)
@@ -74,7 +79,7 @@ export default {
     incArticleTags: function (article) {
       
       const strJson = JSON.stringify({
-        "nickname": "user1",
+        "nickname": this.nickname,
         "url": article.url,
       });
       axios.post(this.endpoint + 'news_click/', strJson)

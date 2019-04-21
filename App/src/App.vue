@@ -9,9 +9,27 @@ import Main from './components/Main.vue'
 
 export default {
   name: 'app',
+  
   components: {
     Main
-  }
+  },
+
+  data () {
+    return {
+      nickname: null,
+    }
+  },
+
+  created() {
+    this.askNickname();
+  },
+
+  methods: {
+    askNickname() {
+      this.nickname = prompt("Введите имя пользователя")
+      console.log(this.nickname)
+    },
+  },
 }
 </script>
 
