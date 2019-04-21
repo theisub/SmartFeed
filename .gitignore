@@ -4,6 +4,7 @@ icon*
 .vscode
 __pycache__
 db.sqlite3
+.DS_Store
 
 
 Back/Dockerfile
