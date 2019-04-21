@@ -47,7 +47,7 @@ export default {
   data () {
     return {
       articles: [],
-      //endpoint: 'https://jsonplaceholder.typicode.com/posts/',
+      endpoint: 'http://127.0.0.1:8000/news/',
     }
   },
 
@@ -57,33 +57,34 @@ export default {
 
   methods: {
     getArticles(param) {
-      this.articles = this.articles.concat(require('../assets/example_news.json').articles);
-      /*
+      //this.articles = this.articles.concat(require('../assets/example_news.json').articles);
+      
       const strJson = JSON.stringify({
-        "nickname": this.nickname,
+        "nickname": "user1",
         "param": param,
       });
       // тут поправить аккуратно ссылку на запрос
-      axios.post(this.endpoint + '', strJson)
+      axios.post(this.endpoint + 'get_news/', strJson)
         .then(response => {
           this.articles = this.articles.concat(response.data.articles);
         })
         .catch(error => {
           console.log('-----error-------', error);
         })
-      */
+      
     },
     incArticleTags: function (article) {
-      /*
+      
       const strJson = JSON.stringify({
+        "nickname": "user1",
         "url": article.url,
       });
       // тут поправить аккуратно ссылку на запрос
-      axios.post(this.endpoint + '', strJson)
+      axios.post(this.endpoint + 'news_click/', strJson)
         .catch(error => {
           console.log('-----error-------', error);
         })
-      */
+      
     },
   }
 }

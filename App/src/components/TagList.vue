@@ -62,7 +62,7 @@ export default {
       tags: null,
       newTagName: "",
       newTagValue: 0.5,
-      //endpoint: 'https://jsonplaceholder.typicode.com/posts/',
+      endpoint: 'http://127.0.0.1:8000/news/',
     }
   },
 
@@ -72,35 +72,41 @@ export default {
 
   methods: {
     getTags() {
-      this.tags = require('../assets/example_tags.json').tags;
-      /*
+      //this.tags = require('../assets/example_tags.json').tags;
+      
       const strJson = JSON.stringify({
-        "nickname": this.nickname,
+        "nickname": "username1",
       });
       // тут поправить аккуратно ссылку на запрос
-      axios.post(this.endpoint + '', strJson)
+      axios.post(this.endpoint + 'get_user_tags/', strJson)
         .then(response => {
-          this.articles = this.articles.concat(response.data.articles);
+          this.tags = response.data.tags;
         })
         .catch(error => {
           console.log('-----error-------', error);
         })
-      */
+      
     },
     addTag(key, value) {
-      /*
+      
       const strJson = JSON.stringify({
-        "nickname": this.nickname,,
+        "nickname": "username1",
         "tags": [
-            {key: value}
+            {key:value}           //Тут пока undefined почему-то, посмотри что можно поправить (может ты ее пока заглушкой оставил)
         ]
       });
+
       // тут поправить аккуратно ссылку на запрос
-      axios.post(this.endpoint + '', strJson)
+      axios.post(this.endpoint + 'init_user/', strJson)
+        .then(response => {
+          this.tags = this.tags.concat(JSON.parse(strJson).tags) /* Я дико извиняюсь за такое временное решение, но по факту сюда надо будет передавать
+                                                                   key и value. Я не понял как именно брать значения с формы (тег и его значение).
+                                                                    Так что посмотри что поменять*/
+        })
         .catch(error => {
           console.log('-----error-------', error);
         })
-      */
+      
       this.getTags()
     },
   }
