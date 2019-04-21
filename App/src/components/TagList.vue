@@ -24,18 +24,20 @@
         <span class="input-group-text">Вес</span>
       </div>
       <input 
+        ref="new_tag_name"
         type="text" 
         class="form-control col-md-6" 
         placeholder="Тег" 
       >
       <input 
+        ref="new_tag_value"
         type="number" 
-        step="0.1" 
+        step="0.01" 
         min="0"
         max="1"
         class="form-control col-md-3" 
-        v-bind:placeholder="newTagValue" 
-        v-bind:value="newTagValue"
+        v-bind:placeholder="0.5" 
+        v-bind:value="0.5" 
       >
       <div class="input-group-append">
         <button 
@@ -57,12 +59,14 @@
 import axios from 'axios'
 
 export default {
+  props: {
+    nickname: String,
+    endpoint: String,
+  },
+
   data () {
     return {
       tags: null,
-      newTagName: "",
-      newTagValue: 0.5,
-      endpoint: 'http://127.0.0.1:8000/news/',
     }
   },
 
@@ -72,12 +76,10 @@ export default {
 
   methods: {
     getTags() {
-      //this.tags = require('../assets/example_tags.json').tags;
       
       const strJson = JSON.stringify({
-        "nickname": "username1",
+        "nickname": this.nickname,
       });
-      // тут поправить аккуратно ссылку на запрос
       axios.post(this.endpoint + 'get_user_tags/', strJson)
         .then(response => {
           this.tags = response.data.tags;
@@ -87,27 +89,26 @@ export default {
         })
       
     },
-    addTag(key, value) {
+    addTag() {
       
+      var key = this.$refs.new_tag_name.value;
+      var value = this.$refs.new_tag_value.value;
+
       const strJson = JSON.stringify({
-        "nickname": "username1",
+        "nickname": this.nickname,
         "tags": [
-            {key:value}           //Тут пока undefined почему-то, посмотри что можно поправить (может ты ее пока заглушкой оставил)
+          {
+            key:value
+          }
         ]
       });
-
-      // тут поправить аккуратно ссылку на запрос
       axios.post(this.endpoint + 'init_user/', strJson)
-        .then(response => {
-          this.tags = this.tags.concat(JSON.parse(strJson).tags) /* Я дико извиняюсь за такое временное решение, но по факту сюда надо будет передавать
-                                                                   key и value. Я не понял как именно брать значения с формы (тег и его значение).
-                                                                    Так что посмотри что поменять*/
-        })
         .catch(error => {
           console.log('-----error-------', error);
         })
       
       this.getTags()
+
     },
   }
 }
