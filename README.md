@@ -36,6 +36,27 @@ cd App; npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+
+## Mongo install on macOS
+
+```bash
+brew tap mongodb/brew
+brew install mongodb-community@4.0
+```
+
+### Run mongo:
+```bash
+brew services start mongodb-community@4.0
+```
+
+If this command ended successfully, mongodb will run on localhost and will listen default port. That what back expected for. If you want to check all is fine or not - run "mongo" command.
+
+## Mongo install on other platforms
+
+See [Official installation guide](https://docs.mongodb.com/manual/administration/install-community/). Installations are to different for different platforms. Ass a result you need to run mongo with default settings.
+
+
+
 ## Back setup
 
 ### Installing packeges
@@ -44,10 +65,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 pip install -r requirements.txt
 ```
 
+### Before applying django migrations and server running
+Note that you need to install and run mongo before next steps. See prev chapter for more details.
+
+
 ### Applying django migrations
 
 ```bash
-cd Back; python manage.py migrate
+cd Back
+python manage.py makemigrations news
+python manage.py migrate
 ```
 
 ### Run server
