@@ -53,7 +53,7 @@ cd Back; python manage.py migrate
 ### Run server
 
 ```bash
-python manage.py runserver
+cd Back; python manage.py runserver
 ```
 
 Server will start at <http://127.0.0.1:8000.> API:
