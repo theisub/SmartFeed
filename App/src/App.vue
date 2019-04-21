@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Main v-bind:nickname="this.nickname"/>
+    <Main 
+      v-bind:nickname="this.nickname"
+      v-bind:endpoint="this.endpoint"
+    />
   </div>
 </template>
 
@@ -17,6 +20,7 @@ export default {
   data () {
     return {
       nickname: null,
+      endpoint: 'http://127.0.0.1:8000/news/',
     }
   },
 

@@ -46,12 +46,12 @@ import axios from 'axios'
 export default {
   props: {
     nickname: String,
+    endpoint: String,
   },
 
   data () {
     return {
       articles: [],
-      endpoint: 'http://127.0.0.1:8000/news/',
     }
   },
 

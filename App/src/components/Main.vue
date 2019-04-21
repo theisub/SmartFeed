@@ -39,7 +39,10 @@
       name="fade" 
       mode="out-in"
     >
-      <router-view :nickname="nickname" class="view"></router-view>
+      <router-view 
+        :nickname="nickname"
+        :endpoint="endpoint"
+      ></router-view>
     </transition>
   </div>
 </template>
@@ -50,6 +53,7 @@ export default {
 
   props: {
     nickname: String,
+    endpoint: String,
   },
 }
 </script>
