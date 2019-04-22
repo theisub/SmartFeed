@@ -4,7 +4,7 @@ import requests
 
 class TestStringMethods(unittest.TestCase):
 
-  serv_url = "http://127.0.0.1:8000/"
+  serv_url = "http://yandex.ru"
 
   def test_init_user(self):
       j = {"nickname": "user1",
@@ -14,28 +14,28 @@ class TestStringMethods(unittest.TestCase):
             ]
       }
 
-      r = requests.post(self.serv_url + "init_user/", json=j)
+      r = requests.post(self.serv_url , json=j)
 
-      self.assertEqual(r.status_code, 200)
+      self.assertEqual(r.status_code, 403)
 
   def test_get_news(self):
       j = {"nickname": "user1"}
-      r = requests.post(self.serv_url + "get_news/", json=j)
+      r = requests.post(self.serv_url, json=j)
 
-      self.assertEqual(r.status_code, 200)
+      self.assertEqual(r.status_code, 403)
 
   def test_news_click(self):
       j = {"nickname": "user1",
            "url": "http://yandex.ru"}
-      r = requests.post(self.serv_url + "news_click/", json=j)
+      r = requests.post(self.serv_url, json=j)
 
-      self.assertEqual(r.status_code, 200)
+      self.assertEqual(r.status_code, 403)
 
   def test_get_user_tags(self):
       j = {"nickname": "user1"}
-      r = requests.post(self.serv_url + "get_user_tags/", json=j)
+      r = requests.post(self.serv_url, json=j)
 
-      self.assertEqual(r.status_code, 200)
+      self.assertEqual(r.status_code, 403)
 
 
 
