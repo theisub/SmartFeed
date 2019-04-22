@@ -71,7 +71,7 @@ export default {
   },
 
   created() {
-    this.getTags();
+    this.startTimer();
   },
 
   methods: {
@@ -109,10 +109,19 @@ export default {
         .catch(error => {
           console.log('-----error-------', error);
         })
-      
-      this.getTags()
 
     },
+	    stopTimer () {
+	      	if (this.interval) {
+	        	window.clearInterval(this.interval)
+	      	}
+	    },
+	    startTimer () {
+	      	this.stopTimer()
+	      	this.interval = window.setInterval(() => {
+	        	this.getTags()
+	      	}, 1000)
+	    },
   }
 }
 </script>
