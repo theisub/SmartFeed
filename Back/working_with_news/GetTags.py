@@ -1,6 +1,7 @@
 import pymorphy2
 import re
 import operator
+from newspaper import Article
 
 def create_tags(text, n=5):
 	text = re.sub(r'[-—.,:^!?@#$%()"«»\n]', "", text) 
@@ -44,13 +45,30 @@ def create_tags(text, n=5):
 	return list_sort
 	
 #user_tags - словарь
-def update_tags(user_tags, cur_tags):
+def update1(user_tags, article_tags):
 	k = 1 # коэффициент
 		
-	for tag in cur_tags:
+	for tag in article_tags:
 		temp = user_tags.get(tag[0], 0)
 		user_tags[tag[0]] = temp + (1-temp)*k*tag[1]
 	return user_tags
+	
+def GetTxt(url): 
+    article = Article(url) 
+    article.download() 
+    try: 
+        data = dict() 
+        article.parse() 
+        data['text']=article.text 
+        return data 
+    except: 
+        return ""
+		
+def update_tags(url, old_tags):
+	text=GetTxt(url)
+	article_tags = create_tags(text)
+	new_tags = update1(old_tags, article_tags)
+	return new_tags
 	
 if __name__ == "__main__":
 	f = open("text.txt", "r")
@@ -62,5 +80,5 @@ if __name__ == "__main__":
 	user_tags = {'словарь':0.1, 'язык':0.2, 'слово':0.5}
 	print(user_tags)
 	for i in range(6):	
-		user_tags = update_tags(user_tags, current_tags)
+		user_tags = update1(user_tags, current_tags)
 		print(user_tags)
