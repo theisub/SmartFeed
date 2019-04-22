@@ -38,7 +38,10 @@ pyth_test:
     image: "python:3.6"
     stage: test
     script:
-    - ls
+    - cd Back
+    - cd Tests 
+    - python3 back_tests.py
+    - python3 GetNewsFeedTest.py
     
 vue_test:
     image: node:8
