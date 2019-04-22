@@ -57,9 +57,8 @@ def GetTxt(url):
     article = Article(url) 
     article.download() 
     try: 
-        data = dict() 
         article.parse() 
-        data['text']=article.text 
+        data = article.text 
         return data 
     except: 
         return ""
@@ -69,6 +68,8 @@ def update_tags(url, old_tags):
 	article_tags = create_tags(text)
 	new_tags = update1(old_tags, article_tags)
 	return new_tags
+
+
 	
 if __name__ == "__main__":
 	f = open("text.txt", "r")

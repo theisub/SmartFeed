@@ -24,7 +24,7 @@ def init_user(request):
 		request_tags = []
 		for tag in user_and_tags["tags"]:
 			for k in tag:
-				tag_name = k
+				tag_name = k.lower()
 				tag_koeff = tag[k]
 				request_tags.append(Tag(tag_name, tag_koeff))
 
@@ -133,9 +133,14 @@ def news_click(request):
 		for tag in q.tags:
 			tags_for_feed[tag.tag_name] = tag.tag_koef
 
+		print('OLD TAGS')
+		print(tags_for_feed)
+
+		print('URL')
+		print(url)
 		new_tags = update_tags(url, tags_for_feed)
-
-
+		print('NEW TAGS')
+		print(new_tags)
     	#koef updating...
 		for tag in new_tags:
 			new_one = True
