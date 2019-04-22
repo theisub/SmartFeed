@@ -38,6 +38,7 @@ pyth_test:
     image: "python:3.6"
     stage: test
     script:
+    - pip3 install -r requirements.txt
     - cd Back
     - cd Tests 
     - python3 back_tests.py
