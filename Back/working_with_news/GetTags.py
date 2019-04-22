@@ -43,9 +43,24 @@ def create_tags(text, n=5):
 		
 	return list_sort
 	
+#user_tags - словарь
+def update_tags(user_tags, cur_tags):
+	k = 1 # коэффициент
+		
+	for tag in cur_tags:
+		temp = user_tags.get(tag[0], 0)
+		user_tags[tag[0]] = temp + (1-temp)*k*tag[1]
+	return user_tags
+	
 if __name__ == "__main__":
 	f = open("text.txt", "r")
 	text = f.read()
 	f.close()
-
-	print(create_tags(text))
+	current_tags = create_tags(text)
+	print(current_tags)
+	
+	user_tags = {'словарь':0.1, 'язык':0.2, 'слово':0.5}
+	print(user_tags)
+	for i in range(6):	
+		user_tags = update_tags(user_tags, current_tags)
+		print(user_tags)
