@@ -4,13 +4,13 @@ import operator
 from newspaper import Article
 
 def create_tags(text, n=5):
-    """!
-    Создание списка тегов для заданного текста
-    
-    @param str text: Текст, заданный строкой
+	"""!
+	Создание списка тегов для заданного текста
 
-    @return list: Возвращает список, состоящий из списков, содержащих теги и их коэффициенты
-    """
+	@param str text: Текст, заданный строкой
+
+	@return list: Возвращает список, состоящий из списков, содержащих теги и их коэффициенты
+	"""
 	text = re.sub(r'[-—.,:^!?@#$%()"«»\n]', "", text) 
 	text = re.sub(r'  ', " ", text)
 	words = re.split(r' ', text)
@@ -54,21 +54,13 @@ def create_tags(text, n=5):
 	
 #user_tags - словарь
 def update1(user_tags, article_tags):
-    """!
-    Обновление коэффициентов пользователя
-    
-    @param dict user_tags: Старые теги пользователя
-	@param list article_tags: Теги из статьи
 
-    @return dict: Новые коэффициенты
-    """
-	k = 1 # коэффициент
-		
-	for tag in article_tags:
-		temp = user_tags.get(tag[0], 0)
+	k = 1
+	for tag in article_tags: 
+		temp = user_tags.get(tag[0],0)
 		user_tags[tag[0]] = temp + (1-temp)*k*tag[1]
 	return user_tags
-	
+
 def GetTxt(url): 
     """!
     Получение текста статьи по её URL
@@ -87,15 +79,11 @@ def GetTxt(url):
         return ""
 		
 def update_tags(url, old_tags):
-    """!
-    Обновление коэффициентов пользователя
-    
-    @param str url: URL статьи
-    @param dict old_tags: Старые теги пользователя
-	
-	
-    @param dict user_tags: Новые теги пользователя
-    """
+	"""!
+	Обновление коэффициентов пользователя
+	@param str url: URL статьи 
+	@param dict old_tags: Старые теги пользователя
+	@param dict user_tags: Новые теги пользователя"""
 	text=GetTxt(url)
 	article_tags = create_tags(text)
 	new_tags = update1(old_tags, article_tags)
