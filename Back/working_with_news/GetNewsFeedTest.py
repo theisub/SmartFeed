@@ -79,20 +79,19 @@ class TestNewsFeedMethods(unittest.TestCase):
         res = SortNewsByInterest('')
         self.assertEqual(res,'')
 
-    def test_get_txt(self):
-        url = dict()
-        url['url'] = "https://github.com/theisub/Unknown/blob/master/README.md"
-        url['tag'] = 'git'
-        url['coef'] = 0.5
-        res = GetTxt(url)
-        print(res)
-        self.assertEqual(res,'')
+   # def test_get_txt(self):
+   #     url = dict()
+   #     url['url'] = "https://github.com/theisub/Unknown/blob/master/README.md"
+   #     url['tag'] = 'git'
+   #     url['coef'] = 0.5
+   #     res = GetTxt(url)
+   #     print(res)
+   #     self.assertEqual(res,'')
 
-    def test_get_new(self):
+    def test_get_empty(self):
         url = dict()
         url['url'] = ""
         res = GetTxt(url)
-        print(res)
         self.assertEqual(res,'')
 
 
