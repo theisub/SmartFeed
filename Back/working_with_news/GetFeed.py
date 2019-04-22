@@ -7,7 +7,8 @@ def SortNewsByInterest(news):
 
     @return dict: Возвращает ленту новостей отсортированной по полю 'coef'
     """
-    news.sort(key=lambda x: x['coef'], reverse=True)
+    if news != "":
+        news.sort(key=lambda x: x['coef'], reverse=True)
     return news
 
 def FormUserFeed(news):
