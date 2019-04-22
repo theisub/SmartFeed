@@ -28,6 +28,7 @@ def create_tags(text, n=5):
 			temp = count.get(norm, 0)
 			count[norm] =  temp + 1
 
+	count.pop('', 0)
 
 	sort = sorted(count.items(), key = operator.itemgetter(1))
 	sort = sort[-n:]
