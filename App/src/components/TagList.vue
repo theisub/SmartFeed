@@ -37,7 +37,6 @@
         max="1"
         class="form-control col-md-3" 
         v-bind:placeholder="0.5" 
-        v-bind:value="0.5" 
       >
       <div class="input-group-append">
         <button 
@@ -71,7 +70,9 @@ export default {
   },
 
   mounted() {
+    this.getTags();
     this.startTimer();
+    this.$refs.new_tag_value.value = '0.5'
   },
 
   methods: {
@@ -90,15 +91,38 @@ export default {
       
     },
     addTag() {
-      
-      const key = this.$refs.new_tag_name.value;
-      const value = this.$refs.new_tag_value.value;
+
+      const new_tag_name = this.$refs.new_tag_name;
+      const new_tag_value = this.$refs.new_tag_value;
+
+      new_tag_name.classList.remove('is-invalid')
+      new_tag_value.classList.remove('is-invalid')
+
+      try {
+
+        if (
+          (new_tag_name.value == '')
+          || (new_tag_name.value.length < 2)
+          || (new_tag_value.value < 0)
+          || (new_tag_value.value > 1)
+        ) {
+          throw new SyntaxError('tagName');
+        }
+
+      } catch (err) {
+
+        new_tag_name.classList.add('is-invalid')
+        new_tag_value.classList.add('is-invalid')
+
+        return;
+
+      }
 
       const strJson = JSON.stringify({
         "nickname": this.nickname,
         "tags": [
           {
-            [key]: value
+            [new_tag_name.value]: new_tag_value.value
           }
         ]
       });
@@ -107,6 +131,9 @@ export default {
         .catch(error => {
           console.log('-----error-------', error);
         })
+
+      new_tag_name.value = ''
+      new_tag_value.value = '0.5'
 
     },
 	    stopTimer () {
