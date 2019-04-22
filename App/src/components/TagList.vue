@@ -41,7 +41,7 @@
       >
       <div class="input-group-append">
         <button 
-          class="btn btn-outline-info" 
+          class="btn btn-info" 
           type="button" 
           v-on:click="addTag()" 
         >
@@ -70,7 +70,7 @@ export default {
     }
   },
 
-  created() {
+  mounted() {
     this.startTimer();
   },
 
@@ -92,9 +92,7 @@ export default {
     addTag() {
       
       const key = this.$refs.new_tag_name.value;
-      console.log(key)
       const value = this.$refs.new_tag_value.value;
-      console.log(value)
 
       const strJson = JSON.stringify({
         "nickname": this.nickname,

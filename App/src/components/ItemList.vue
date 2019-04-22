@@ -30,8 +30,9 @@
   </div>
 
   <button 
+    ref="button_more"
     type="button" 
-    class="btn btn-dark get-articles"
+    class="btn btn-dark get-articles disabled"
     v-on:click="getArticles('more')" 
   >
     Еще новости
@@ -55,24 +56,35 @@ export default {
     }
   },
 
-  created() {
+  mounted() {
     this.getArticles('refresh');
   },
 
   methods: {
     getArticles(param) {
       
-      const strJson = JSON.stringify({
-        "nickname": this.nickname,
-        "param": param,
-      });
-      axios.post(this.endpoint + 'get_news/', strJson)
-        .then(response => {
-          this.articles = this.articles.concat(response.data.articles);
-        })
-        .catch(error => {
-          console.log('-----error-------', error);
-        })
+      var buttonClassList = this.$refs.button_more.classList;
+      const buttonDisabled = buttonClassList.contains('disabled')
+
+      if (param == 'more') {
+        buttonClassList.add('disabled')
+      }
+
+      if (!(buttonDisabled) || (param=='refresh')) {
+
+        const strJson = JSON.stringify({
+          "nickname": this.nickname,
+          "param": param,
+        });
+        axios.post(this.endpoint + 'get_news/', strJson)
+          .then(response => {
+            this.articles = this.articles.concat(response.data.articles);
+            buttonClassList.remove('disabled');
+          })
+          .catch(error => {
+            console.log('-----error-------', error);
+          })
+      }
       
     },
     incArticleTags: function (article) {
