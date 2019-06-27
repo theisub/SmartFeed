@@ -1,4 +1,9 @@
 # smartfeed
+News aggregator which modifies user's newsfeed based on his interests. 
+Currently, this version only supports Russian news (sorry)
+More information about project such as: ER diagram, Use Case diagram and small description is located in docs directory (yep, it's also in Russian, sorry). 
+P.S. You actually can make a little tweak to backend to make it work with other languages. At least I made an additional argument in GetTxt method which is located in /Back/working_with_news/NewsFetch.py
+Anyway, if you'd like to contribute something or have any questions you can PM me or leave a merge request or add an issue, I'll gladly help.
 
 ## To Run Them All
 
