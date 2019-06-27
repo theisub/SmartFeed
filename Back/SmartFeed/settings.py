@@ -79,8 +79,7 @@ WSGI_APPLICATION = 'SmartFeed.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'news',
-        'HOST': 'mongo'
+        'NAME': 'news'
     }
 }
 '''
