@@ -1,3 +1,12 @@
 package-lock.json
 node_modules
 icon*
+.vscode
+__pycache__
+db.sqlite3
+.DS_Store
+
+
+Back/Dockerfile
+Back/news/migrations/__init__.py
+Back/news/migrations/0001_initial.py
