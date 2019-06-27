@@ -15,8 +15,8 @@ SmartFeed
 
 ## Технические решения
 Backend:
-* Postgresql
 * Python + Django
+* Mongo
 
 Frontend: 
 * Vue.js
@@ -25,10 +25,10 @@ Frontend:
 * Gitlab
 
 Багтрекер:
-* Jira/Gitlab Issues
+* Gitlab Issues
 
 Ревью кода:
-* Upsource/Gitlab
+* Gitlab
 
 CI:
-* Jenkins/Gitlab CI
+* Gitlab CI
